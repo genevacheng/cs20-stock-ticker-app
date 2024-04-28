@@ -32,7 +32,7 @@ http.createServer(function (req, res) {
 
             var query = {[qobj.type]: qobj.query};
             res.write("<script>");
-            collection.find(query).toArray().forEach((result) => {
+            collection.find(query).forEach((result) => {
                 res.write("console.log(" + result.company + ", " + result.ticker + ", " + result.price);
             });
             res.write("</script>");
