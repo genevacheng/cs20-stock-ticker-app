@@ -31,11 +31,10 @@ http.createServer(function (req, res) {
             var collection = db.collection("PublicCompanies");
 
             var query = {[qobj.type]: qobj.query};
-            collection.find(query).toArray()
-                .then(results => {
-                    res.write("<script>console.log(" + results + ")</script>");
-                    res.end();
-                });
+            res.write("<script>");
+            collection.find(query).toArray().forEach((result) => res.write("console.log(" + result.company + ", " + result.ticker + ", " + result.price));
+            res.write("</script>");
+            res.end();
         });
     }
 }).listen(port);
