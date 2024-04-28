@@ -3,6 +3,8 @@ var fs = require("fs");
 var url = require("url");
 var mongo = require("mongodb");
 
+var port = process.env.PORT || 3000;
+
 http.createServer(function (req, res) {
     var page = url.parse(req.url).pathname;
 
@@ -36,4 +38,4 @@ http.createServer(function (req, res) {
 
         res.end();
     }
-}).listen(8080);
+}).listen(port);
