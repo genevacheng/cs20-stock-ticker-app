@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <style>
+            * {
+                font-family: "Courier New";
+            }
+
+            body {
+                margin: 35vh auto;
+                text-align: center;
+            }
+
+            h1 {
+                font-weight: normal;
+                margin-bottom: 30px;
+            }
+
+            #submit {
+                width: 450px;
+                margin-top: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Stock Ticker App</h1>
+        <form method="get" action="/process">
+            <label for="query">Query:</label>
+            <input type="text" name="query" id="query"/>
+            <input type="radio" name="type" value="company" id="company"/>
+            <label for="company">Company</label>
+            <input type="radio" name="type" value="ticker" id="ticker"/>
+            <label for="ticker">Ticker</label><br/>
+            <input type="submit" value="Submit" id="submit"/>
+        </form>
+    </body>
+</html>
