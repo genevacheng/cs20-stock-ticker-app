@@ -31,11 +31,9 @@ http.createServer(function (req, res) {
             var collection = db.collection("PublicCompanies");
 
             var query = {[qobj.type]: qobj.query};
-            res.write("<script>");
             collection.find(query).forEach((result) => {
-                res.write("console.log(" + result.company + ", " + result.ticker + ", " + result.price);
+                res.write("<script>console.log(" + result.company + ", " + result.ticker + ", " + result.price + "</script>");
             });
-            res.write("</script>");
             res.end();
         });
     }
