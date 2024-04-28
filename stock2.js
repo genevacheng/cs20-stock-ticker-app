@@ -16,7 +16,6 @@ http.createServer(function (req, res) {
             res.end();
         });
     } else if (page == "/process") {
-        res.writeHead(200, {"Content-Type": "text/html"});
         var qobj = url.parse(req.url, true).query;
 
         var MongoClient = mongo.MongoClient;
@@ -31,10 +30,12 @@ http.createServer(function (req, res) {
             var collection = db.collection("PublicCompanies");
 
             var query = {[qobj.type]: qobj.query};
-            collection.find(query).forEach((result) => {
-                res.write("<script>console.log(" + result.company + ", " + result.ticker + ", " + result.price + "</script>");
-            });
-            res.end();
+            collection.find(query).toArray()
+                .then(results => {
+                    console.log(results);
+                });
         });
+
+        res.end();
     }
-}).listen(port);
+}).listen(8080);
