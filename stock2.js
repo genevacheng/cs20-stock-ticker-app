@@ -16,6 +16,7 @@ http.createServer(function (req, res) {
             res.end();
         });
     } else if (page == "/process") {
+        res.writeHead(200, {"Content-Type": "text/html"});
         var qobj = url.parse(req.url, true).query;
 
         var MongoClient = mongo.MongoClient;
@@ -33,9 +34,8 @@ http.createServer(function (req, res) {
             collection.find(query).toArray()
                 .then(results => {
                     res.write("<script>console.log(" + results + ")</script>");
+                    res.end();
                 });
         });
-
-        res.end();
     }
 }).listen(port);
