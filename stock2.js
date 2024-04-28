@@ -32,7 +32,7 @@ http.createServer(function (req, res) {
             var query = {[qobj.type]: qobj.query};
             collection.find(query).toArray()
                 .then(results => {
-                    console.log(results);
+                    res.write("<script>console.log(" + results + ")</script>");
                 });
         });
 
